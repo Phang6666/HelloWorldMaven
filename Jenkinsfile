@@ -1,45 +1,54 @@
-pipeline { 
-    agent any 
-    stages {
-        stage('Build') { 
-            steps {
-                withMaven(maven : 'apache-maven-3.6.0'){
-                        sh "mvn clean compile"
-                }
-            }
-        }
-        stage('Test'){
-            steps {
-                withMaven(maven : 'apache-maven-3.6.0'){
-                        sh "mvn test"
-                }
+pipeline {
+    agent any
 
+    tools {
+        // Define the Maven tool configuration
+        maven 'apache_maven_3.6.3'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                // Compile the code using Maven
+                sh "mvn clean compile"
             }
         }
-        stage('build && SonarQube analysis') {
+
+        stage('Test') {
             steps {
-                withSonarQubeEnv('sonar.tools.devops.****') {
-                    sh 'sonar-scanner -Dsonar.projectKey=myProject -Dsonar.sources=./src'
+                // Run tests using Maven
+                sh "mvn test"
+            }
+            post {
+                always {
+                    // Archive test results and generate reports
+                    junit 'target/surefire-reports/*.xml'
                 }
             }
         }
-        stage("Quality Gate") {
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
-                    // Requires SonarScanner for Jenkins 2.7+
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-			}
+
         stage('Deploy') {
             steps {
-               withMaven(maven : 'apache-maven-3.6.0'){
-                        sh "mvn deploy"
-                }
-
+                // Deploy the application using Maven
+                sh "mvn deploy"
             }
+            post {
+                always {
+                    // Archive artifacts from the deploy stage (optional)
+                    archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            // Actions to take if the build succeeds
+            echo 'Build and deployment successful!'
+        }
+        failure {
+            // Actions to take if the build fails
+            echo 'Build or deployment failed.'
         }
     }
 }

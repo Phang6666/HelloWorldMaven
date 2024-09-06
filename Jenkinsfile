@@ -1,54 +1,43 @@
-pipeline {
-    agent any
-
-    tools {
-        // Define the Maven tool configuration
-        maven 'apache_maven_3.6.3'
-    }
-
-    stages {
-        stage('Build') {
-            steps {
-                // Compile the code using Maven
-                sh "mvn clean compile"
-            }
-        }
-
-        stage('Test') {
-            steps {
-                // Run tests using Maven
-                sh "mvn test"
-            }
-            post {
-                always {
-                    // Archive test results and generate reports
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                // Deploy the application using Maven
-                sh "mvn deploy"
-            }
-            post {
-                always {
-                    // Archive artifacts from the deploy stage (optional)
-                    archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
-                }
-            }
-        }
-    }
-
-    post {
-        success {
-            // Actions to take if the build succeeds
-            echo 'Build and deployment successful!'
-        }
-        failure {
-            // Actions to take if the build fails
-            echo 'Build or deployment failed.'
-        }
-    }
+pipeline { 
+    agent any 
+    stages { 
+        stage('Checkout') { 
+            steps { 
+                git branch: 'master', url: 'https://github.com/kayjin03/HelloWorldMaven.git' 
+            } 
+        } 
+        stage('Build') { 
+            steps { 
+                powershell '''
+                        mvn site
+                        mvn clean package > build.log
+                        '''
+                } 
+        } 
+        stage('Test') { 
+            steps { 
+                powershell '''
+                        mvn test
+                        mvn clean test
+                        '''
+                } 
+        } 
+        stage('Deploy') { 
+            steps { powershell 'java -jar target/HelloWorldMaven-1.1.1-RELEASE-jar-with-dependencies.jar'}            
+        }     
 }
+post { 
+always { 
+echo 'Cleaning up workspace' 
+deleteDir() // Clean up the workspace after the build 
+} 
+success { 
+echo 'Build succeeded!!!' 
+// You could add notification steps here 
+} 
+failure { 
+echo 'Build failed!' 
+// You could add notification steps here 
+} 
+} 
+} 

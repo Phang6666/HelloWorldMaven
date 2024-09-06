@@ -7,7 +7,7 @@ pipeline {
             } 
         } 
         stage('Build') { 
-            steps { powershell 'mvn package build'} 
+            steps { powershell 'mvn clean package'} 
         } 
         stage('Test') { 
             steps { powershell 'mvn clean test'} 

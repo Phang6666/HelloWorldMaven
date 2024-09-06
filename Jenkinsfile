@@ -7,10 +7,20 @@ pipeline {
             } 
         } 
         stage('Build') { 
-            steps { powershell 'mvn clean package'} 
+            steps { 
+                powershell '''
+                        mvn site
+                        mvn clean package > build.log
+                        '''
+                } 
         } 
         stage('Test') { 
-            steps { powershell 'mvn clean test'} 
+            steps { 
+                powershell '''
+                        mvn test
+                        mvn clean test
+                        '''
+                } 
         } 
         stage('Deploy') { 
             steps { powershell 'java -jar target/HelloWorldMaven-1.1.1-RELEASE-jar-with-dependencies.jar'}            

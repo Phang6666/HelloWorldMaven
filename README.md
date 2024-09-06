@@ -1,1 +1,1 @@
-# HelloWorldMaven
+# HelloWorldMaven Project

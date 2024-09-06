@@ -1,0 +1,108 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.test:HelloWorldMaven:jar:1.1.1-RELEASE
+[WARNING] 'build.plugins.plugin.(groupId:artifactId)' must be unique but found duplicate declaration of plugin org.apache.maven.plugins:maven-assembly-plugin @ line 115, column 15
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] ----------------------< com.test:HelloWorldMaven >----------------------
+[INFO] Building HelloWorldMaven 1.1.1-RELEASE
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ HelloWorldMaven ---
+[INFO] Deleting C:\Users\User\HelloWorldMaven\target
+[INFO] 
+[INFO] --- jacoco:0.8.10:prepare-agent (default) @ HelloWorldMaven ---
+[INFO] argLine set to -javaagent:C:\\Users\\User\\.m2\\repository\\org\\jacoco\\org.jacoco.agent\\0.8.10\\org.jacoco.agent-0.8.10-runtime.jar=destfile=C:\\Users\\User\\HelloWorldMaven\\target\\jacoco.exec
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ HelloWorldMaven ---
+[INFO] skip non existing resourceDirectory C:\Users\User\HelloWorldMaven\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ HelloWorldMaven ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 1 source file with javac [debug target 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ HelloWorldMaven ---
+[INFO] skip non existing resourceDirectory C:\Users\User\HelloWorldMaven\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ HelloWorldMaven ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 1 source file with javac [debug target 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ HelloWorldMaven ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junit4.JUnit4Provider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.test.HelloWorldMaven.AppTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.047 s -- in com.test.HelloWorldMaven.AppTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] >>> surefire-report:3.2.5:report (default) > [surefire]test @ HelloWorldMaven >>>
+[INFO] 
+[INFO] --- jacoco:0.8.10:prepare-agent (default) @ HelloWorldMaven ---
+[INFO] argLine set to -javaagent:C:\\Users\\User\\.m2\\repository\\org\\jacoco\\org.jacoco.agent\\0.8.10\\org.jacoco.agent-0.8.10-runtime.jar=destfile=C:\\Users\\User\\HelloWorldMaven\\target\\jacoco.exec
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ HelloWorldMaven ---
+[INFO] skip non existing resourceDirectory C:\Users\User\HelloWorldMaven\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ HelloWorldMaven ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ HelloWorldMaven ---
+[INFO] skip non existing resourceDirectory C:\Users\User\HelloWorldMaven\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ HelloWorldMaven ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 1 source file with javac [debug target 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ HelloWorldMaven ---
+[INFO] Skipping execution of surefire because it has already been run for this configuration
+[INFO] 
+[INFO] --- jacoco:0.8.10:report (report) @ HelloWorldMaven ---
+[INFO] Loading execution data file C:\Users\User\HelloWorldMaven\target\jacoco.exec
+[INFO] Analyzed bundle 'HelloWorldMaven' with 1 classes
+[INFO] 
+[INFO] <<< surefire-report:3.2.5:report (default) < [surefire]test @ HelloWorldMaven <<<
+[INFO] 
+[INFO] 
+[INFO] --- surefire-report:3.2.5:report (default) @ HelloWorldMaven ---
+[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[WARNING] Unable to locate Test Source XRef to link to - DISABLED
+[INFO] 
+[INFO] --- jacoco:0.8.10:report (report) @ HelloWorldMaven ---
+[INFO] Loading execution data file C:\Users\User\HelloWorldMaven\target\jacoco.exec
+[INFO] Analyzed bundle 'HelloWorldMaven' with 1 classes
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ HelloWorldMaven ---
+[INFO] Building jar: C:\Users\User\HelloWorldMaven\target\HelloWorldMaven-1.1.1-RELEASE.jar
+[INFO] 
+[INFO] --- assembly:3.3.0:single (make-assembly) @ HelloWorldMaven ---
+[INFO] Reading assembly descriptor: src/assembly/assembly.xml
+[WARNING] The assembly id jar-with-dependencies is used more than once.
+[INFO] Building jar: C:\Users\User\HelloWorldMaven\target\HelloWorldMaven-1.1.1-RELEASE-jar-with-dependencies.jar
+[INFO] Building jar: C:\Users\User\HelloWorldMaven\target\HelloWorldMaven-1.1.1-RELEASE-jar-with-dependencies.jar
+[WARNING] artifact com.test:HelloWorldMaven:jar:jar-with-dependencies:1.1.1-RELEASE already attached, replace previous instance
+[INFO] 
+[INFO] --- assembly:3.3.0:single (make-my-jar-with-dependencies) @ HelloWorldMaven ---
+[INFO] Reading assembly descriptor: src/assembly/assembly.xml
+[WARNING] The assembly id jar-with-dependencies is used more than once.
+[INFO] Building jar: C:\Users\User\HelloWorldMaven\target\HelloWorldMaven-1.1.1-RELEASE-jar-with-dependencies.jar
+[WARNING] artifact com.test:HelloWorldMaven:jar:jar-with-dependencies:1.1.1-RELEASE already attached, replace previous instance
+[INFO] Building jar: C:\Users\User\HelloWorldMaven\target\HelloWorldMaven-1.1.1-RELEASE-jar-with-dependencies.jar
+[WARNING] artifact com.test:HelloWorldMaven:jar:jar-with-dependencies:1.1.1-RELEASE already attached, replace previous instance
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.498 s
+[INFO] Finished at: 2024-09-06T16:06:09+08:00
+[INFO] ------------------------------------------------------------------------
